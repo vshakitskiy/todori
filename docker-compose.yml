@@ -1,0 +1,26 @@
+version: "3.0"
+name: "todori-api"
+services:
+  backend:
+    container_name: "todori-backend"
+    build: .
+    env_file:
+      - .env
+    ports:
+      - ${PORT}:${PORT}
+  postgres:
+    container_name: "todori-postgres"
+    image: postgres:latest
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - "5436:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
