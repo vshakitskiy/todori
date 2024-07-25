@@ -8,7 +8,10 @@ The aim is to learn Go language and how to write complex api with it.
 
 Todori is a platform where user can plan their work/study plan with something like Kanban boards. They can also collab with other users by inviting them to their workspace.
 
-Current scheme of the v1 api: [/public/schemev1.jpg]
+Current scheme of the v1 api: 
+
+![Planning - v1](/public/schemev1.jpg)
+
 
 ## Getting started
 
