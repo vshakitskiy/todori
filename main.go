@@ -2,7 +2,9 @@ package main
 
 import (
 	"log"
+	"todori/ent"
 	"todori/lib"
+	"todori/routes"
 
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
@@ -10,20 +12,14 @@ import (
 
 func main() {
 	// godotenv
-	err := godotenv.Load(".env")
-	if err != nil {
-			log.Fatal("Error loading .env file")
+	if err := godotenv.Load(".env"); err != nil {
+		log.Fatal("Error loading .env file")
 	}
+
+	ent.OpenClient()
 
 	// echo
 	e := echo.New()
-
-	e.GET("/ping", func(ctx echo.Context) error {
-		return ctx.JSON(200, map[string]interface{}{
-			"status": "ok",
-			"message": "pong",
-		})
-	})
-
+	routes.AppendRoutes(e.Group("/api"))
 	e.Logger.Fatal(e.Start(":" + lib.Getenv("PORT")))
 }
